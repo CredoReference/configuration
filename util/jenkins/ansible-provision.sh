@@ -226,7 +226,7 @@ EOF
 fi
 
 
-if [[ $recreate == "true" ]]; then
+#if [[ $recreate == "true" ]]; then
     # vars specific to provisioning added to $extra-vars
     cat << EOF >> $extra_vars_file
 dns_name: $dns_name
@@ -263,11 +263,12 @@ EOF
     #     run_ansible rabbitmq.yml -i "${deploy_host}," $extra_var_arg --user ubuntu
     #     run_ansible restart_supervisor.yml -i "${deploy_host}," $extra_var_arg --user ubuntu
     # fi
-fi
+#fi
 
 declare -A deploy
 roles="edxapp forum ecommerce programs notifier xqueue xserver ora discern certs demo testcourses"
 for role in $roles; do
+    echo "$role"
     deploy[$role]=${!role}
 done
 
