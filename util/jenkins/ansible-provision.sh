@@ -273,7 +273,11 @@ for role in $roles; do
 done
 
 echo "HERE IT WILL PRINT DEPLOY"
-echo $deploy
+for i in "${!deploy[@]}"
+do
+  echo "key :" $i
+  echo "value:" ${deploy[$i]}
+done
 
 # If reconfigure was selected or if starting from an ubuntu 12.04 AMI
 # run non-deploy tasks for all roles
