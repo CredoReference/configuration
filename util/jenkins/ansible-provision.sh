@@ -271,6 +271,7 @@ for role in $roles; do
     deploy[$role]=${!role}
 done
 
+echo "HERE IT WILL PRINT DEPLOY"
 echo $deploy
 
 # If reconfigure was selected or if starting from an ubuntu 12.04 AMI
@@ -280,8 +281,9 @@ echo $deploy
 #     run_ansible edx_continuous_integration.yml -i "${deploy_host}," $extra_var_arg --user ubuntu
 # fi
 
-if [[ $reconfigure != "true" && $server_type == "full_edx_installation" ]]; then
+#if [[ $reconfigure != "true" && $server_type == "full_edx_installation" ]]; then
     # Run deploy tasks for the roles selected
+    echo "DISPLAY extra_vars_file and ROLES"
     for i in $roles; do
         if [[ ${deploy[$i]} == "true" ]]; then
             cat $extra_vars_file
@@ -289,7 +291,7 @@ if [[ $reconfigure != "true" && $server_type == "full_edx_installation" ]]; then
             #run_ansible ${i}.yml -i "${deploy_host}," $extra_var_arg --user ubuntu --tags deploy
         fi
     done
-fi
+#fi
 
 # # deploy the edx_ansible role
 # run_ansible edx_ansible.yml -i "${deploy_host}," $extra_var_arg --user ubuntu
